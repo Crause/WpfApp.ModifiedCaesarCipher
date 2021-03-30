@@ -11,10 +11,8 @@ namespace WpfApp.CaesarCypher
   public partial class MainWindow : Window
   {
     int Key = 0;
-    //const string RussianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"; // 33 symbols
-    //const string EnglishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // 26 symbols
-    const string RussianAlphabet = "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя"; // 66 symbols
-    const string EnglishAlphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"; // 52 symbols
+    string RussianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"; // 33 symbols
+    string EnglishAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //
     List<string> InputText = new List<string>();
     List<string> OutputText = new List<string>();
     public MainWindow()
@@ -35,7 +33,7 @@ namespace WpfApp.CaesarCypher
 
       if (dialog.ShowDialog() == true)
       {
-        tbInput.Text = File.ReadAllText(dialog.FileName, Encoding.UTF8);
+        tbInput.Text = File.ReadAllText(dialog.FileName, Encoding.UTF8).ToUpper(); // could ToUpper
       }
     }
     // Encrypt button click event
@@ -46,7 +44,7 @@ namespace WpfApp.CaesarCypher
       Key = Convert.ToInt32(tbKey.Text);
       for (int i = 0; i < tbInput.LineCount; i++)
       {
-        InputText.Add(tbInput.GetLineText(i)); // could ToUpper
+        InputText.Add(tbInput.GetLineText(i).ToUpper()); // could ToUpper
       }
       
       
@@ -93,7 +91,7 @@ namespace WpfApp.CaesarCypher
       Key = Convert.ToInt32(tbKey.Text);
       for (int i = 0; i < tbInput.LineCount; i++)
       {
-        InputText.Add(tbInput.GetLineText(i));
+        InputText.Add(tbInput.GetLineText(i).ToUpper()); // could ToUpper
       }
 
 
